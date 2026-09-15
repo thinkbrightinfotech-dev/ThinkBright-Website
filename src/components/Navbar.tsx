@@ -82,18 +82,19 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab }) => {
   };
 
   return (
-    <header className="sticky top-0 z-30 w-full bg-slate-950/95 backdrop-blur-md border-b border-slate-800/80 transition-all">
+    <header className="sticky top-0 z-30 w-full bg-white/95 backdrop-blur-md border-b border-slate-200/90 shadow-[0_1px_3px_0_rgba(15,23,42,0.05)] transition-all">
       {/* Top micro-bar for quick contact & location */}
-      <div className="hidden lg:block bg-slate-900/40 border-b border-slate-800/60 py-1.5 px-6 text-[11px] text-slate-400">
+      <div className="hidden lg:block bg-slate-900 border-b border-slate-800 py-1.5 px-6 text-[11px] text-slate-300">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-6 font-medium">
             <span>📍 Behind Musalat Filling Station, Okediji Area, Ilora, Oyo State</span>
+            <span className="text-slate-500">|</span>
             <span>🕒 Mon – Sat: 8:00 AM – 6:30 PM</span>
           </div>
           <div className="flex items-center gap-4">
-            <span className="text-cyan-400 font-medium">Official Hotlines: 09034836379 / 09015306791</span>
+            <span className="text-sky-400 font-semibold">Hotlines: 09034836379 / 09015306791</span>
             <span className="text-slate-600">|</span>
-            <a href="mailto:thinkbrightinfotech@gmail.com" className="hover:text-cyan-300 transition-colors">
+            <a href="mailto:thinkbrightinfotech@gmail.com" className="hover:text-white transition-colors">
               thinkbrightinfotech@gmail.com
             </a>
           </div>
@@ -107,38 +108,38 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab }) => {
           onClick={() => handleNavClick('home')}
           className="flex items-center gap-3 cursor-pointer group shrink-0"
         >
-          <div className="relative w-12 h-12 rounded-2xl bg-slate-900 p-1 border border-slate-800 shadow-sm group-hover:border-cyan-400 transition-all">
+          <div className="relative w-11 h-11 rounded-xl bg-white p-1 border border-slate-200 shadow-xs group-hover:border-blue-500 transition-all flex items-center justify-center">
             <img 
               src="/images/logo.png" 
               alt="ThinkBright Infotech Logo" 
-              className="w-full h-full object-contain filter drop-shadow"
+              className="w-full h-full object-contain"
             />
           </div>
           <div>
             <div className="flex items-center gap-1.5">
-              <span className="text-lg sm:text-xl font-extrabold tracking-tight text-white font-display">
-                Think<span className="text-cyan-400">Bright</span>
+              <span className="text-lg sm:text-xl font-extrabold tracking-tight text-slate-900 font-display">
+                Think<span className="text-blue-600">Bright</span>
               </span>
-              <span className="text-xs px-1.5 py-0.5 rounded bg-blue-950 text-cyan-300 font-bold uppercase tracking-wider border border-blue-800">
+              <span className="text-[10px] px-1.5 py-0.5 rounded-md bg-blue-50 text-blue-700 font-bold uppercase tracking-wider border border-blue-200/80">
                 Infotech
               </span>
             </div>
-            <p className="text-[10px] text-slate-400 font-medium tracking-wide hidden sm:block">
+            <p className="text-[10px] text-slate-500 font-medium tracking-wide hidden sm:block">
               Empowering Your Digital Future
             </p>
           </div>
         </div>
 
         {/* Desktop Navigation Links */}
-        <nav className="hidden xl:flex items-center gap-1 text-xs font-semibold text-slate-300">
+        <nav className="hidden xl:flex items-center gap-1 text-xs font-semibold text-slate-600">
           {navLinks.slice(0, 8).map(link => (
             <button
               key={link.id}
               onClick={() => handleNavClick(link.id)}
               className={`px-3 py-2 rounded-lg transition-all ${
                 activeTab === link.id
-                  ? 'bg-cyan-500/10 text-cyan-300 border border-cyan-500/30'
-                  : 'hover:text-white hover:bg-slate-900/60'
+                  ? 'bg-blue-50 text-blue-700 font-bold border border-blue-200/80 shadow-2xs'
+                  : 'hover:text-blue-600 hover:bg-slate-50'
               }`}
             >
               {link.label}
@@ -147,17 +148,17 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab }) => {
           
           {/* More menu */}
           <div className="relative group">
-            <button className="px-3 py-2 rounded-lg hover:text-white hover:bg-slate-900/60 flex items-center gap-1 transition-colors">
+            <button className="px-3 py-2 rounded-lg hover:text-blue-600 hover:bg-slate-50 flex items-center gap-1 transition-colors">
               <span>More</span>
-              <ChevronDown className="w-3.5 h-3.5 text-slate-400" />
+              <ChevronDown className="w-3.5 h-3.5 text-slate-400 group-hover:text-blue-600" />
             </button>
-            <div className="absolute top-full left-0 mt-1 w-48 bg-slate-900 border border-slate-800 rounded-xl shadow-xl py-2 hidden group-hover:block backdrop-blur-xl">
+            <div className="absolute top-full left-0 mt-1 w-48 bg-white border border-slate-200 rounded-xl shadow-xl py-2 hidden group-hover:block backdrop-blur-xl">
               {navLinks.slice(8).map(link => (
                 <button
                   key={link.id}
                   onClick={() => handleNavClick(link.id)}
                   className={`w-full text-left px-4 py-2 text-xs transition-colors ${
-                    activeTab === link.id ? 'text-cyan-400 bg-cyan-950/40' : 'text-slate-300 hover:text-white hover:bg-slate-800'
+                    activeTab === link.id ? 'text-blue-700 bg-blue-50 font-bold' : 'text-slate-600 hover:text-blue-600 hover:bg-slate-50'
                   }`}
                 >
                   {link.label}
@@ -173,33 +174,33 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab }) => {
           <button
             id="nav-cta-learn"
             onClick={() => handleNavClick('courses')}
-            className="hidden md:inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-bold rounded-xl bg-slate-900 hover:bg-slate-800 text-cyan-300 border border-cyan-500/30 transition-all hover:border-cyan-400"
+            className="hidden md:inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-bold rounded-xl bg-white hover:bg-slate-50 text-slate-800 border border-slate-200 shadow-xs transition-all hover:border-blue-400"
           >
-            <BookOpen className="w-3.5 h-3.5" />
+            <BookOpen className="w-3.5 h-3.5 text-blue-600" />
             <span>Start Learning</span>
           </button>
 
           <button
             id="nav-cta-apprentice"
             onClick={() => handleNavClick('apprenticeship')}
-            className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-bold rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white shadow-md shadow-cyan-600/20 transition-all"
+            className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-bold rounded-xl bg-blue-600 hover:bg-blue-700 text-white shadow-xs shadow-blue-500/20 transition-all"
           >
             <Sparkles className="w-3.5 h-3.5" />
             <span>Become an Apprentice</span>
           </button>
 
-          {/* Theme Mode Toggle (Simple & Sophisticated) */}
+          {/* Theme Mode Toggle */}
           <button
             id="theme-toggle-btn"
             onClick={toggleTheme}
-            className="p-2 rounded-xl bg-slate-900 border border-slate-800 hover:bg-slate-800 text-slate-300 hover:text-white relative transition-colors"
-            title={theme === 'light' ? 'Switch to Sophisticated Dark' : 'Switch to Clean Light'}
-            aria-label={theme === 'light' ? 'Switch to Sophisticated Dark' : 'Switch to Clean Light'}
+            className="p-2 rounded-xl bg-slate-100 border border-slate-200 hover:bg-slate-200 text-slate-700 relative transition-colors"
+            title={theme === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode'}
+            aria-label={theme === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode'}
           >
             {theme === 'light' ? (
               <Moon className="w-4 h-4 text-slate-700" />
             ) : (
-              <Sun className="w-4 h-4 text-amber-400" />
+              <Sun className="w-4 h-4 text-amber-500" />
             )}
           </button>
 
@@ -208,12 +209,12 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab }) => {
             <button
               id="notifications-toggle-btn"
               onClick={() => setIsNotifOpen(!isNotifOpen)}
-              className="p-2 rounded-xl bg-slate-900 border border-slate-800 hover:bg-slate-800 text-slate-300 hover:text-white relative transition-colors"
+              className="p-2 rounded-xl bg-slate-100 border border-slate-200 hover:bg-slate-200 text-slate-700 relative transition-colors"
               title="Notifications"
             >
               <Bell className="w-4 h-4" />
               {unreadNotificationCount > 0 && (
-                <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-cyan-500 text-slate-950 font-bold text-[9px] flex items-center justify-center">
+                <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-blue-600 text-white font-bold text-[9px] flex items-center justify-center">
                   {unreadNotificationCount}
                 </span>
               )}
@@ -221,23 +222,23 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab }) => {
 
             {/* Notifications Panel */}
             {isNotifOpen && (
-              <div className="absolute right-0 mt-2 w-80 sm:w-96 bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl p-4 z-50 animate-in fade-in">
-                <div className="flex items-center justify-between pb-3 border-b border-slate-800">
-                  <span className="font-bold text-xs text-white uppercase tracking-wider">Notifications Center</span>
-                  <span className="text-[10px] text-cyan-400 font-semibold">{unreadNotificationCount} Unread</span>
+              <div className="absolute right-0 mt-2 w-80 sm:w-96 bg-white border border-slate-200 rounded-2xl shadow-2xl p-4 z-50 animate-in fade-in">
+                <div className="flex items-center justify-between pb-3 border-b border-slate-200">
+                  <span className="font-bold text-xs text-slate-900 uppercase tracking-wider">Notifications Center</span>
+                  <span className="text-[10px] text-blue-600 font-semibold">{unreadNotificationCount} Unread</span>
                 </div>
-                <div className="divide-y divide-slate-800/80 max-h-72 overflow-y-auto my-2 text-xs">
+                <div className="divide-y divide-slate-100 max-h-72 overflow-y-auto my-2 text-xs">
                   {notifications.map(n => (
                     <div 
                       key={n.id} 
                       onClick={() => markNotificationAsRead(n.id)}
-                      className={`p-3 rounded-xl cursor-pointer transition-colors ${n.read ? 'opacity-60 hover:opacity-90' : 'bg-slate-950/60'}`}
+                      className={`p-3 rounded-xl cursor-pointer transition-colors ${n.read ? 'opacity-60 hover:opacity-90' : 'bg-blue-50/50'}`}
                     >
                       <div className="flex items-center justify-between">
-                        <p className="font-semibold text-white">{n.title}</p>
+                        <p className="font-semibold text-slate-900">{n.title}</p>
                         <span className="text-[10px] text-slate-500">{n.createdAt}</span>
                       </div>
-                      <p className="text-slate-300 text-[11px] mt-1 leading-relaxed">{n.message}</p>
+                      <p className="text-slate-600 text-[11px] mt-1 leading-relaxed">{n.message}</p>
                     </div>
                   ))}
                 </div>
@@ -252,26 +253,26 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab }) => {
                 <button
                   id="user-profile-menu-btn"
                   onClick={() => setIsRoleDropdownOpen(!isRoleDropdownOpen)}
-                  className="flex items-center gap-2 p-1.5 pr-2.5 rounded-xl bg-slate-900 border border-slate-800 hover:border-cyan-500/40 text-left transition-all"
+                  className="flex items-center gap-2 p-1.5 pr-2.5 rounded-xl bg-white border border-slate-200 hover:border-blue-400 text-left transition-all shadow-2xs"
                 >
-                  <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-cyan-600 to-blue-700 text-white font-bold text-xs flex items-center justify-center">
+                  <div className="w-8 h-8 rounded-lg bg-blue-600 text-white font-bold text-xs flex items-center justify-center">
                     {currentUser.displayName.charAt(0)}
                   </div>
                   <div className="hidden md:block">
-                    <p className="text-xs font-bold text-white truncate max-w-[110px]">{currentUser.displayName.split(' ')[0]}</p>
-                    <p className="text-[10px] text-cyan-400 capitalize font-medium">{currentUser.role.replace('_', ' ')}</p>
+                    <p className="text-xs font-bold text-slate-900 truncate max-w-[110px]">{currentUser.displayName.split(' ')[0]}</p>
+                    <p className="text-[10px] text-blue-600 capitalize font-medium">{currentUser.role.replace('_', ' ')}</p>
                   </div>
                   <ChevronDown className="w-3.5 h-3.5 text-slate-400" />
                 </button>
 
                 {/* Role Switcher & Account Dropdown */}
                 {isRoleDropdownOpen && (
-                  <div className="absolute right-0 mt-2 w-72 bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl p-3 z-50 animate-in fade-in">
-                    <div className="px-3 py-2 border-b border-slate-800 mb-2">
-                      <p className="font-bold text-xs text-white">{currentUser.displayName}</p>
-                      <p className="text-[11px] text-slate-400 truncate">{currentUser.email}</p>
-                      <span className="inline-block mt-1 px-2 py-0.5 rounded bg-cyan-950 text-cyan-300 text-[10px] font-semibold border border-cyan-800">
-                        Current Role: {currentUser.role.toUpperCase().replace('_', ' ')}
+                  <div className="absolute right-0 mt-2 w-72 bg-white border border-slate-200 rounded-2xl shadow-2xl p-3 z-50 animate-in fade-in">
+                    <div className="px-3 py-2 border-b border-slate-100 mb-2">
+                      <p className="font-bold text-xs text-slate-900">{currentUser.displayName}</p>
+                      <p className="text-[11px] text-slate-500 truncate">{currentUser.email}</p>
+                      <span className="inline-block mt-1 px-2 py-0.5 rounded-md bg-blue-50 text-blue-700 text-[10px] font-semibold border border-blue-200/80">
+                        Role: {currentUser.role.toUpperCase().replace('_', ' ')}
                       </span>
                     </div>
 
@@ -289,8 +290,8 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab }) => {
                           }}
                           className={`w-full text-left px-3 py-2 rounded-xl text-xs transition-colors flex items-center justify-between ${
                             currentUser.role === item.role
-                              ? 'bg-cyan-600 text-white font-bold'
-                              : 'hover:bg-slate-800 text-slate-300'
+                              ? 'bg-blue-600 text-white font-bold'
+                              : 'hover:bg-slate-50 text-slate-700'
                           }`}
                         >
                           <div>
@@ -302,13 +303,13 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab }) => {
                       ))}
                     </div>
 
-                    <div className="pt-2 mt-2 border-t border-slate-800 space-y-1">
+                    <div className="pt-2 mt-2 border-t border-slate-100 space-y-1">
                       <button
                         onClick={() => {
                           setActiveTab('portal');
                           setIsRoleDropdownOpen(false);
                         }}
-                        className="w-full text-left px-3 py-2 rounded-xl text-xs font-semibold text-cyan-300 hover:bg-slate-800 transition-colors flex items-center gap-2"
+                        className="w-full text-left px-3 py-2 rounded-xl text-xs font-semibold text-blue-600 hover:bg-blue-50 transition-colors flex items-center gap-2"
                       >
                         <Shield className="w-3.5 h-3.5" />
                         <span>Open Dashboard / Portal</span>
@@ -318,7 +319,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab }) => {
                           signOut();
                           setIsRoleDropdownOpen(false);
                         }}
-                        className="w-full text-left px-3 py-2 rounded-xl text-xs text-rose-400 hover:bg-rose-950/40 transition-colors flex items-center gap-2"
+                        className="w-full text-left px-3 py-2 rounded-xl text-xs text-rose-600 hover:bg-rose-50 transition-colors flex items-center gap-2"
                       >
                         <LogOut className="w-3.5 h-3.5" />
                         <span>Sign Out</span>
@@ -332,9 +333,9 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab }) => {
                 <button
                   id="google-signin-btn"
                   onClick={signInWithGoogle}
-                  className="px-3.5 py-2 text-xs font-bold rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-700 flex items-center gap-1.5 transition-colors"
+                  className="px-3.5 py-2 text-xs font-bold rounded-xl bg-white hover:bg-slate-50 text-slate-800 border border-slate-200 flex items-center gap-1.5 transition-colors shadow-2xs"
                 >
-                  <LogIn className="w-3.5 h-3.5 text-cyan-400" />
+                  <LogIn className="w-3.5 h-3.5 text-blue-600" />
                   <span>Sign In</span>
                 </button>
               </div>
@@ -345,7 +346,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab }) => {
           <button
             id="mobile-menu-toggle-btn"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="xl:hidden p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-white"
+            className="xl:hidden p-2 rounded-xl bg-slate-100 border border-slate-200 text-slate-700 hover:text-slate-900"
           >
             {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
@@ -354,18 +355,18 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab }) => {
 
       {/* Mobile Drawer Menu */}
       {isMobileMenuOpen && (
-        <div className="xl:hidden bg-slate-950 border-b border-slate-800 px-6 py-5 space-y-3 animate-in slide-in-from-top-4">
-          <div className="grid grid-cols-2 gap-2 pb-4 border-b border-slate-800 text-xs font-bold">
+        <div className="xl:hidden bg-white border-b border-slate-200 px-6 py-5 space-y-3 animate-in slide-in-from-top-4 shadow-xl">
+          <div className="grid grid-cols-2 gap-2 pb-4 border-b border-slate-100 text-xs font-bold">
             <button
               onClick={() => handleNavClick('courses')}
-              className="py-2.5 px-3 rounded-xl bg-slate-900 text-cyan-300 border border-cyan-500/30 flex items-center justify-center gap-1.5"
+              className="py-2.5 px-3 rounded-xl bg-slate-50 text-slate-800 border border-slate-200 flex items-center justify-center gap-1.5"
             >
-              <BookOpen className="w-4 h-4" />
+              <BookOpen className="w-4 h-4 text-blue-600" />
               <span>Start Learning</span>
             </button>
             <button
               onClick={() => handleNavClick('apprenticeship')}
-              className="py-2.5 px-3 rounded-xl bg-gradient-to-r from-cyan-600 to-blue-600 text-white flex items-center justify-center gap-1.5"
+              className="py-2.5 px-3 rounded-xl bg-blue-600 text-white flex items-center justify-center gap-1.5 shadow-xs"
             >
               <Sparkles className="w-4 h-4" />
               <span>Apply Apprenticeship</span>
@@ -379,8 +380,8 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab }) => {
                 onClick={() => handleNavClick(link.id)}
                 className={`py-2 px-3 rounded-xl text-left transition-colors ${
                   activeTab === link.id
-                    ? 'bg-cyan-500/10 text-cyan-300 border border-cyan-500/30'
-                    : 'text-slate-300 hover:bg-slate-900'
+                    ? 'bg-blue-50 text-blue-700 font-bold border border-blue-200/80'
+                    : 'text-slate-600 hover:bg-slate-50'
                 }`}
               >
                 {link.label}
@@ -388,10 +389,10 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab }) => {
             ))}
           </div>
 
-          <div className="pt-3 border-t border-slate-800 text-[11px] text-slate-400">
-            <p className="font-semibold text-slate-200">ThinkBright Infotech</p>
+          <div className="pt-3 border-t border-slate-100 text-[11px] text-slate-500">
+            <p className="font-semibold text-slate-800">ThinkBright Infotech</p>
             <p>Okediji Area, Ilora, Oyo State</p>
-            <p className="text-cyan-400 mt-1">Tel: 09034836379 / 09015306791</p>
+            <p className="text-blue-600 font-semibold mt-1">Tel: 09034836379 / 09015306791</p>
           </div>
         </div>
       )}

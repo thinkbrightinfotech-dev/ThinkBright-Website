@@ -26,7 +26,19 @@ import {
   EVENTS_DATA, 
   INITIAL_CERTIFICATES 
 } from '../data/mockData';
-import { db, collection, doc, setDoc, getDocs, onSnapshot, serverTimestamp } from '../firebase';
+import { 
+  db, 
+  collection, 
+  doc, 
+  setDoc, 
+  getDocs, 
+  onSnapshot, 
+  serverTimestamp,
+  auth,
+  onAuthStateChanged,
+  handleFirestoreError,
+  OperationType 
+} from '../firebase';
 import confetti from 'canvas-confetti';
 
 interface DataContextType {
@@ -309,25 +321,38 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [agreements, setAgreements] = useState<ApprenticeshipAgreement[]>([]);
   const [auditLogs, setAuditLogs] = useState<AuditLogEntry[]>(INITIAL_AUDIT_LOGS);
 
-  // Firestore sync for applications if available
+  // Firestore sync for applications (only attach listener when user is authenticated as per Firebase guidelines)
   useEffect(() => {
-    try {
-      const q = collection(db, 'applications');
-      const unsubscribe = onSnapshot(q, (snapshot) => {
-        if (!snapshot.empty) {
-          const loaded: ApprenticeApplication[] = [];
-          snapshot.forEach((docSnap) => {
-            loaded.push({ id: docSnap.id, ...docSnap.data() } as ApprenticeApplication);
+    let unsubSnapshot: (() => void) | null = null;
+    const unsubAuth = onAuthStateChanged(auth, (user) => {
+      if (unsubSnapshot) {
+        unsubSnapshot();
+        unsubSnapshot = null;
+      }
+      if (user) {
+        try {
+          const q = collection(db, 'applications');
+          unsubSnapshot = onSnapshot(q, (snapshot) => {
+            if (!snapshot.empty) {
+              const loaded: ApprenticeApplication[] = [];
+              snapshot.forEach((docSnap) => {
+                loaded.push({ id: docSnap.id, ...docSnap.data() } as ApprenticeApplication);
+              });
+              setApplications(loaded);
+            }
+          }, (err) => {
+            handleFirestoreError(err, OperationType.LIST, 'applications');
           });
-          setApplications(loaded);
+        } catch (err) {
+          handleFirestoreError(err, OperationType.LIST, 'applications');
         }
-      }, (err) => {
-        console.warn('Firestore real-time subscription error (using memory state):', err);
-      });
-      return () => unsubscribe();
-    } catch {
-      // Memory state fallback
-    }
+      }
+    });
+
+    return () => {
+      if (unsubSnapshot) unsubSnapshot();
+      unsubAuth();
+    };
   }, []);
 
   const addAuditLog = (action: string, affectedRecord: string, details: string, userEmail: string) => {

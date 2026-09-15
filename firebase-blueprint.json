@@ -1,47 +1,85 @@
 {
   "entities": {
     "User": {
-      "collection": "users",
-      "fields": {
-        "email": "string",
-        "displayName": "string",
-        "role": "string",
-        "phone": "string",
-        "createdAt": "timestamp"
-      }
+      "title": "User",
+      "description": "User profile document",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "role": { "type": "string" },
+        "phone": { "type": "string" },
+        "avatarUrl": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["email", "role"]
     },
     "Application": {
-      "collection": "applications",
-      "fields": {
-        "userId": "string",
-        "fullName": "string",
-        "email": "string",
-        "phone": "string",
-        "programme": "string",
-        "status": "string",
-        "submittedAt": "timestamp"
-      }
+      "title": "Application",
+      "description": "Apprenticeship Application",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "fullName": { "type": "string" },
+        "email": { "type": "string" },
+        "phone": { "type": "string" },
+        "programme": { "type": "string" },
+        "status": { "type": "string" },
+        "submittedAt": { "type": "string" }
+      },
+      "required": ["id", "fullName", "email", "programme", "status"]
     },
     "Payment": {
-      "collection": "payments",
-      "fields": {
-        "userId": "string",
-        "amount": "number",
-        "type": "string",
-        "status": "string",
-        "receiptNumber": "string",
-        "createdAt": "timestamp"
-      }
+      "title": "Payment",
+      "description": "Payment Record",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "receiptNumber": { "type": "string" },
+        "userId": { "type": "string" },
+        "payerName": { "type": "string" },
+        "payerEmail": { "type": "string" },
+        "amount": { "type": "number" },
+        "status": { "type": "string" }
+      },
+      "required": ["id", "receiptNumber", "amount", "status"]
     },
     "Certificate": {
-      "collection": "certificates",
-      "fields": {
-        "certificateNumber": "string",
-        "learnerName": "string",
-        "programme": "string",
-        "issueDate": "string",
-        "status": "string"
-      }
+      "title": "Certificate",
+      "description": "Certificate verification record",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "learnerName": { "type": "string" },
+        "programme": { "type": "string" },
+        "issueDate": { "type": "string" },
+        "verificationUrl": { "type": "string" }
+      },
+      "required": ["id", "learnerName", "programme"]
+    }
+  },
+  "firestore": {
+    "/test/{testId}": {
+      "schema": { "$ref": "#/entities/User" },
+      "description": "Connectivity test documents"
+    },
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/User" },
+      "description": "User profiles indexed by UID"
+    },
+    "/applications/{appId}": {
+      "schema": { "$ref": "#/entities/Application" },
+      "description": "Apprentice applications"
+    },
+    "/payments/{paymentId}": {
+      "schema": { "$ref": "#/entities/Payment" },
+      "description": "Payment receipts and records"
+    },
+    "/certificates/{certId}": {
+      "schema": { "$ref": "#/entities/Certificate" },
+      "description": "Certificates for public validation"
     }
   }
 }
+

@@ -52,7 +52,7 @@ function AppContent() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-950 text-slate-100 selection:bg-cyan-500 selection:text-white relative bg-subtle-pattern transition-colors duration-300">
+    <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900 selection:bg-blue-600 selection:text-white relative bg-subtle-pattern transition-colors duration-300">
       
       {/* Top Main Navigation */}
       <Navbar activeTab={activeTab} setActiveTab={setActiveTab} />

@@ -9,7 +9,7 @@ interface ThemeContextType {
 }
 
 const ThemeContext = createContext<ThemeContextType>({
-  theme: 'dark',
+  theme: 'light',
   setTheme: () => {},
   toggleTheme: () => {},
 });
@@ -18,25 +18,26 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const [theme, setThemeState] = useState<ThemeMode>(() => {
     if (typeof window !== 'undefined') {
       const saved = localStorage.getItem('thinkbright-theme') as ThemeMode;
+      // If user had saved an explicit choice, honor it, but default to white/light
       if (saved === 'light' || saved === 'dark') return saved;
     }
-    return 'dark';
+    return 'light';
   });
 
   useEffect(() => {
     if (typeof document !== 'undefined') {
       const root = document.documentElement;
       root.setAttribute('data-theme', theme);
-      if (theme === 'light') {
+      if (theme === 'dark') {
+        root.classList.remove('light');
+        root.classList.add('dark');
+        document.body.classList.remove('bg-white', 'text-slate-900');
+        document.body.classList.add('bg-slate-950', 'text-slate-100');
+      } else {
         root.classList.remove('dark');
         root.classList.add('light');
         document.body.classList.remove('bg-slate-950', 'text-slate-100');
-        document.body.classList.add('bg-slate-50', 'text-slate-900');
-      } else {
-        root.classList.remove('light');
-        root.classList.add('dark');
-        document.body.classList.remove('bg-slate-50', 'text-slate-900');
-        document.body.classList.add('bg-slate-950', 'text-slate-100');
+        document.body.classList.add('bg-white', 'text-slate-900');
       }
       localStorage.setItem('thinkbright-theme', theme);
     }

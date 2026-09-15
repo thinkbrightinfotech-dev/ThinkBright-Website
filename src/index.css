@@ -1,129 +1,343 @@
 @import "tailwindcss";
 
 :root {
-  /* Default: Modern Sophisticated Charcoal Palette */
-  --app-bg: #0c0e14;
-  --app-card: #131620;
-  --app-card-muted: #181c28;
-  --app-border: #1f2533;
-  --app-border-subtle: #171b26;
-  --app-text: #f8fafc;
-  --app-text-muted: #94a3b8;
+  /* ==========================================================================
+     Global Tech Design System (Inspired by Stripe, Linear, Vercel, and GitHub)
+     Clean, crisp, high-contrast, professional tech enterprise theme
+     ========================================================================== */
+  --tech-canvas: #f8fafc;         /* Slate-50: Luminous crisp off-white */
+  --tech-surface: #ffffff;        /* Pure White: Elevated card surfaces */
+  --tech-surface-muted: #f1f5f9;  /* Slate-100: Table headers, subtle insets */
+  --tech-border: #e2e8f0;         /* Slate-200: Hairline structural borders */
+  --tech-border-hover: #cbd5e1;   /* Slate-300: Active/hover borders */
+  
+  --tech-heading: #0f172a;        /* Slate-900: High-contrast ink text */
+  --tech-body: #334155;           /* Slate-700: High-legibility body text */
+  --tech-muted: #64748b;          /* Slate-500: Secondary captions & labels */
+  
+  --tech-primary: #2563eb;        /* Royal Tech Blue */
+  --tech-primary-hover: #1d4ed8;  /* Deep Cobalt */
+  --tech-accent: #0284c7;         /* Tech Cyan / Azure */
+  --tech-success: #059669;        /* Verified Emerald */
 }
 
-[data-theme="light"], .light {
-  /* Modern Sophisticated Clean Light Palette */
-  --app-bg: #f8fafc;
-  --app-card: #ffffff;
-  --app-card-muted: #f1f5f9;
-  --app-border: #e2e8f0;
-  --app-border-subtle: #cbd5e1;
-  --app-text: #0f172a;
-  --app-text-muted: #475569;
+/* Base Body and Smooth Rendering */
+html {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--tech-canvas);
+  color: var(--tech-body);
 }
 
-@theme {
-  --color-slate-950: var(--app-bg);
-  --color-slate-900: var(--app-card);
-  --color-slate-850: var(--app-card-muted);
-  --color-slate-800: var(--app-border);
+body {
+  background-color: var(--tech-canvas);
+  color: var(--tech-body);
+  line-height: 1.6;
 }
 
-/* Subtle modern architectural grid for sophistication */
+/* Architectural micro-grid for global tech aesthetic */
 .bg-subtle-pattern {
-  background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-color: var(--tech-canvas);
+  background-image: radial-gradient(rgba(100, 116, 139, 0.16) 1px, transparent 1px);
   background-size: 24px 24px;
 }
 
-[data-theme="light"] .bg-subtle-pattern {
-  background-image: radial-gradient(rgba(15, 23, 42, 0.05) 1px, transparent 1px);
-  background-size: 24px 24px;
+/* Headings: Crisp ink slate with tight optical tracking */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--tech-heading);
+  letter-spacing: -0.025em;
+  font-weight: 800;
 }
 
-/* Light mode overrides for existing utility classes */
-[data-theme="light"] body {
-  background-color: #f8fafc !important;
-  color: #0f172a !important;
+/* Preserve gradient text wherever bg-clip-text is used */
+.bg-clip-text,
+[class*="bg-clip-text"] {
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
 }
 
-[data-theme="light"] .bg-slate-950 {
-  background-color: #f8fafc !important;
+/* ==========================================================================
+   Surfaces & Elevated Cards
+   ========================================================================== */
+/* Main page container */
+.bg-slate-950:not(footer):not(.dark-section):not(.bg-slate-950\/90):not(.bg-slate-950\/60) {
+  background-color: var(--tech-canvas);
 }
 
-[data-theme="light"] .bg-slate-900 {
-  background-color: #ffffff !important;
-  border-color: #e2e8f0 !important;
-  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.04), 0 1px 2px -1px rgb(0 0 0 / 0.04);
+/* Elevated cards: Pure white, clean hairline border, subtle layer shadow */
+.bg-slate-900:not(footer *):not(header *):not(.dark-section *):not(.dark-section) {
+  background-color: var(--tech-surface);
+  border-color: var(--tech-border);
+  box-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.04), 0 1px 2px -1px rgba(15, 23, 42, 0.02);
 }
 
-[data-theme="light"] .bg-slate-950\/60,
-[data-theme="light"] .bg-slate-950\/70,
-[data-theme="light"] .bg-slate-950\/80,
-[data-theme="light"] .bg-slate-950\/90 {
-  background-color: #f8fafc !important;
-  border-color: #e2e8f0 !important;
+.bg-slate-900\/60,
+.bg-slate-900\/40,
+.bg-slate-900\/80 {
+  background-color: var(--tech-surface);
+  border-color: var(--tech-border);
 }
 
-[data-theme="light"] .border-slate-800,
-[data-theme="light"] .border-slate-800\/60,
-[data-theme="light"] .border-slate-800\/80 {
-  border-color: #e2e8f0 !important;
+.bg-slate-950\/60,
+.bg-slate-950\/80,
+.bg-slate-950\/90 {
+  background-color: var(--tech-surface-muted);
+  border-color: var(--tech-border);
 }
 
-[data-theme="light"] .border-slate-700,
-[data-theme="light"] .border-slate-700\/60 {
-  border-color: #cbd5e1 !important;
+/* Borders */
+.border-slate-800,
+.border-slate-800\/80,
+.border-slate-800\/60,
+.border-slate-800\/40 {
+  border-color: var(--tech-border);
 }
 
-[data-theme="light"] h1,
-[data-theme="light"] h2,
-[data-theme="light"] h3,
-[data-theme="light"] h4,
-[data-theme="light"] .text-white {
-  color: #0f172a !important;
+.border-slate-700 {
+  border-color: var(--tech-border-hover);
 }
 
-/* Maintain crisp white text on colored accent elements & buttons */
-[data-theme="light"] button.text-white,
-[data-theme="light"] a.text-white,
-[data-theme="light"] .bg-cyan-600,
-[data-theme="light"] .bg-cyan-500,
-[data-theme="light"] .bg-blue-600,
-[data-theme="light"] .bg-indigo-600,
-[data-theme="light"] .bg-emerald-600,
-[data-theme="light"] [class*="bg-cyan-600"] *,
-[data-theme="light"] [class*="bg-blue-600"] * {
+/* ==========================================================================
+   Typography & Colors (Excluding footer and dark buttons)
+   ========================================================================== */
+/* Default white text in cards translates to deep ink text */
+.text-white:not(footer *):not(button[class*="bg-blue"]):not(button[class*="bg-cyan"]):not(button[class*="bg-indigo"]):not(button[class*="bg-emerald"]):not(button[class*="bg-slate-900"]):not(.text-white-fixed):not(.dark-section *):not(.bg-clip-text) {
+  color: var(--tech-heading);
+}
+
+/* Text Hierarchy */
+.text-slate-200:not(footer *):not(.dark-section *),
+.text-slate-300:not(footer *):not(.dark-section *) {
+  color: var(--tech-body);
+}
+
+.text-slate-400:not(footer *):not(.dark-section *) {
+  color: var(--tech-muted);
+}
+
+/* Brand Accent Text: High contrast on light canvas */
+.text-cyan-400:not(footer *):not(header .text-sky-400):not(.dark-section *) {
+  color: var(--tech-primary);
+}
+
+.text-cyan-300:not(footer *):not(.dark-section *) {
+  color: var(--tech-primary-hover);
+}
+
+.text-blue-400:not(footer *):not(.dark-section *) {
+  color: var(--tech-primary);
+}
+
+/* ==========================================================================
+   Pills, Badges & Chips
+   ========================================================================== */
+.bg-cyan-950,
+.bg-cyan-950\/80,
+.bg-cyan-950\/40 {
+  background-color: #eff6ff;
+  color: #1d4ed8;
+  border-color: #bfdbfe;
+}
+
+.bg-blue-950,
+.bg-blue-950\/80,
+.bg-blue-950\/40 {
+  background-color: #eff6ff;
+  color: #1d4ed8;
+  border-color: #bfdbfe;
+}
+
+.bg-sky-950,
+.bg-sky-950\/80 {
+  background-color: #f0fdf4;
+  color: #15803d;
+  border-color: #bbf7d0;
+}
+
+.bg-indigo-950,
+.bg-indigo-950\/80 {
+  background-color: #f5f3ff;
+  color: #6d28d9;
+  border-color: #ddd6fe;
+}
+
+.bg-slate-800:not(footer *):not(.dark-section *) {
+  background-color: #f1f5f9;
+  color: #334155;
+  border-color: #e2e8f0;
+}
+
+/* ==========================================================================
+   Buttons & Interactive Elements
+   ========================================================================== */
+/* Primary Brand Buttons */
+.bg-cyan-600,
+.bg-blue-600 {
+  background-color: var(--tech-primary);
   color: #ffffff !important;
 }
 
-[data-theme="light"] .text-slate-100,
-[data-theme="light"] .text-slate-200,
-[data-theme="light"] .text-slate-300 {
-  color: #334155 !important;
+.bg-cyan-600:hover,
+.bg-blue-600:hover {
+  background-color: var(--tech-primary-hover);
+  color: #ffffff !important;
 }
 
-[data-theme="light"] .text-slate-400 {
-  color: #64748b !important;
+.bg-cyan-600 *,
+.bg-blue-600 * {
+  color: #ffffff !important;
 }
 
-[data-theme="light"] .text-slate-500 {
+/* Secondary Buttons */
+button.bg-slate-900:not(footer *):not(header *):not(.dark-section *) {
+  background-color: #ffffff;
+  color: #1e293b !important;
+  border: 1px solid var(--tech-border);
+  box-shadow: 0 1px 2px 0 rgba(15, 23, 42, 0.05);
+}
+
+button.bg-slate-900:hover:not(footer *):not(header *):not(.dark-section *) {
+  background-color: #f8fafc;
+  border-color: var(--tech-border-hover);
+  color: #0f172a !important;
+}
+
+button.bg-slate-900:not(footer *):not(header *):not(.dark-section *) * {
+  color: inherit !important;
+}
+
+/* Form Controls: Clean White, Crisp Slate Border, Blue Focus Glow */
+input, select, textarea {
+  background-color: #ffffff;
+  color: #0f172a;
+  border-color: #cbd5e1;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #94a3b8;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: var(--tech-primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+  outline: none;
+}
+
+/* ==========================================================================
+   Footer Anchor (Premier Deep Graphite Slate like Stripe & GitHub)
+   ========================================================================== */
+footer {
+  background-color: #0b0f19 !important;
+  border-top: 1px solid #1e293b !important;
   color: #94a3b8 !important;
 }
 
-[data-theme="light"] .bg-cyan-950,
-[data-theme="light"] .bg-cyan-950\/80,
-[data-theme="light"] .bg-cyan-950\/90 {
-  background-color: #ecfeff !important;
-  color: #0891b2 !important;
-  border-color: #a5f3fc !important;
+footer h2,
+footer h3,
+footer h4,
+footer p.font-display,
+footer .text-white {
+  color: #ffffff !important;
 }
 
-[data-theme="light"] .bg-blue-950,
-[data-theme="light"] .bg-blue-950\/80 {
-  background-color: #eff6ff !important;
-  color: #2563eb !important;
-  border-color: #bfdbfe !important;
+footer .text-slate-400,
+footer .text-slate-300 {
+  color: #94a3b8 !important;
 }
 
+footer a,
+footer button {
+  color: #cbd5e1;
+}
 
+footer a:hover,
+footer button:hover {
+  color: #60a5fa !important;
+}
 
+footer .text-cyan-400 {
+  color: #38bdf8 !important;
+}
+
+footer .border-slate-800,
+footer .border-slate-800\/80 {
+  border-color: #1e293b !important;
+}
+
+/* ==========================================================================
+   Dark Mode Support (When explicitly toggled by user)
+   ========================================================================== */
+[data-theme="dark"],
+.dark {
+  --tech-canvas: #0b0f19;
+  --tech-surface: #111827;
+  --tech-surface-muted: #1f2937;
+  --tech-border: #1f2937;
+  --tech-border-hover: #374151;
+  --tech-heading: #f8fafc;
+  --tech-body: #cbd5e1;
+  --tech-muted: #94a3b8;
+}
+
+[data-theme="dark"] body,
+.dark body {
+  background-color: #0b0f19;
+  color: #cbd5e1;
+}
+
+[data-theme="dark"] .bg-subtle-pattern,
+.dark .bg-subtle-pattern {
+  background-color: #0b0f19;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+}
+
+[data-theme="dark"] h1,
+[data-theme="dark"] h2,
+[data-theme="dark"] h3,
+[data-theme="dark"] h4,
+[data-theme="dark"] h5,
+[data-theme="dark"] h6,
+.dark h1,
+.dark h2,
+.dark h3,
+.dark h4,
+.dark h5,
+.dark h6 {
+  color: #f8fafc;
+}
+
+[data-theme="dark"] .bg-slate-900,
+.dark .bg-slate-900 {
+  background-color: #111827 !important;
+  border-color: #1f2937 !important;
+}
+
+[data-theme="dark"] .text-white,
+.dark .text-white {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .text-slate-300,
+.dark .text-slate-300 {
+  color: #cbd5e1 !important;
+}
+
+[data-theme="dark"] .text-slate-400,
+.dark .text-slate-400 {
+  color: #94a3b8 !important;
+}
+
+[data-theme="dark"] input,
+[data-theme="dark"] select,
+[data-theme="dark"] textarea,
+.dark input,
+.dark select,
+.dark textarea {
+  background-color: #111827 !important;
+  color: #ffffff !important;
+  border-color: #374151 !important;
+}
