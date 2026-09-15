@@ -1,0 +1,76 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    // Users collection
+    match /users/{userId} {
+      allow read: if isAuthenticated();
+      allow write: if isOwner(userId);
+    }
+
+    // Apprenticeship Applications
+    match /applications/{appId} {
+      allow read: if isAuthenticated();
+      allow create: if isAuthenticated();
+      allow update, delete: if isAuthenticated();
+    }
+
+    // Apprentices data & agreements
+    match /apprentices/{apprenticeId} {
+      allow read: if isAuthenticated();
+      allow write: if isAuthenticated();
+    }
+
+    match /agreements/{agreementId} {
+      allow read: if isAuthenticated();
+      allow create: if isAuthenticated();
+      allow update: if isAuthenticated();
+    }
+
+    // Payments & Receipts
+    match /payments/{paymentId} {
+      allow read: if isAuthenticated();
+      allow create: if isAuthenticated();
+      allow update: if isAuthenticated();
+    }
+
+    // Attendance
+    match /attendance/{attendanceId} {
+      allow read: if isAuthenticated();
+      allow write: if isAuthenticated();
+    }
+
+    // Service Orders
+    match /serviceOrders/{orderId} {
+      allow read: if isAuthenticated();
+      allow create: if isAuthenticated();
+      allow update: if isAuthenticated();
+    }
+
+    // Certificates (Publicly verifiable)
+    match /certificates/{certId} {
+      allow read: if true;
+      allow write: if isAuthenticated();
+    }
+
+    // CMS & Public content (Publicly readable, authenticated write for admin)
+    match /siteContent/{docId} {
+      allow read: if true;
+      allow write: if isAuthenticated();
+    }
+
+    // Audit logs
+    match /auditLogs/{logId} {
+      allow read: if isAuthenticated();
+      allow create: if isAuthenticated();
+    }
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "entities": {
+    "User": {
+      "collection": "users",
+      "fields": {
+        "email": "string",
+        "displayName": "string",
+        "role": "string",
+        "phone": "string",
+        "createdAt": "timestamp"
+      }
+    },
+    "Application": {
+      "collection": "applications",
+      "fields": {
+        "userId": "string",
+        "fullName": "string",
+        "email": "string",
+        "phone": "string",
+        "programme": "string",
+        "status": "string",
+        "submittedAt": "timestamp"
+      }
+    },
+    "Payment": {
+      "collection": "payments",
+      "fields": {
+        "userId": "string",
+        "amount": "number",
+        "type": "string",
+        "status": "string",
+        "receiptNumber": "string",
+        "createdAt": "timestamp"
+      }
+    },
+    "Certificate": {
+      "collection": "certificates",
+      "fields": {
+        "certificateNumber": "string",
+        "learnerName": "string",
+        "programme": "string",
+        "issueDate": "string",
+        "status": "string"
+      }
+    }
+  }
+}

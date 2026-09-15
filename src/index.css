@@ -1,0 +1,129 @@
+@import "tailwindcss";
+
+:root {
+  /* Default: Modern Sophisticated Charcoal Palette */
+  --app-bg: #0c0e14;
+  --app-card: #131620;
+  --app-card-muted: #181c28;
+  --app-border: #1f2533;
+  --app-border-subtle: #171b26;
+  --app-text: #f8fafc;
+  --app-text-muted: #94a3b8;
+}
+
+[data-theme="light"], .light {
+  /* Modern Sophisticated Clean Light Palette */
+  --app-bg: #f8fafc;
+  --app-card: #ffffff;
+  --app-card-muted: #f1f5f9;
+  --app-border: #e2e8f0;
+  --app-border-subtle: #cbd5e1;
+  --app-text: #0f172a;
+  --app-text-muted: #475569;
+}
+
+@theme {
+  --color-slate-950: var(--app-bg);
+  --color-slate-900: var(--app-card);
+  --color-slate-850: var(--app-card-muted);
+  --color-slate-800: var(--app-border);
+}
+
+/* Subtle modern architectural grid for sophistication */
+.bg-subtle-pattern {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+[data-theme="light"] .bg-subtle-pattern {
+  background-image: radial-gradient(rgba(15, 23, 42, 0.05) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Light mode overrides for existing utility classes */
+[data-theme="light"] body {
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .bg-slate-950 {
+  background-color: #f8fafc !important;
+}
+
+[data-theme="light"] .bg-slate-900 {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.04), 0 1px 2px -1px rgb(0 0 0 / 0.04);
+}
+
+[data-theme="light"] .bg-slate-950\/60,
+[data-theme="light"] .bg-slate-950\/70,
+[data-theme="light"] .bg-slate-950\/80,
+[data-theme="light"] .bg-slate-950\/90 {
+  background-color: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+}
+
+[data-theme="light"] .border-slate-800,
+[data-theme="light"] .border-slate-800\/60,
+[data-theme="light"] .border-slate-800\/80 {
+  border-color: #e2e8f0 !important;
+}
+
+[data-theme="light"] .border-slate-700,
+[data-theme="light"] .border-slate-700\/60 {
+  border-color: #cbd5e1 !important;
+}
+
+[data-theme="light"] h1,
+[data-theme="light"] h2,
+[data-theme="light"] h3,
+[data-theme="light"] h4,
+[data-theme="light"] .text-white {
+  color: #0f172a !important;
+}
+
+/* Maintain crisp white text on colored accent elements & buttons */
+[data-theme="light"] button.text-white,
+[data-theme="light"] a.text-white,
+[data-theme="light"] .bg-cyan-600,
+[data-theme="light"] .bg-cyan-500,
+[data-theme="light"] .bg-blue-600,
+[data-theme="light"] .bg-indigo-600,
+[data-theme="light"] .bg-emerald-600,
+[data-theme="light"] [class*="bg-cyan-600"] *,
+[data-theme="light"] [class*="bg-blue-600"] * {
+  color: #ffffff !important;
+}
+
+[data-theme="light"] .text-slate-100,
+[data-theme="light"] .text-slate-200,
+[data-theme="light"] .text-slate-300 {
+  color: #334155 !important;
+}
+
+[data-theme="light"] .text-slate-400 {
+  color: #64748b !important;
+}
+
+[data-theme="light"] .text-slate-500 {
+  color: #94a3b8 !important;
+}
+
+[data-theme="light"] .bg-cyan-950,
+[data-theme="light"] .bg-cyan-950\/80,
+[data-theme="light"] .bg-cyan-950\/90 {
+  background-color: #ecfeff !important;
+  color: #0891b2 !important;
+  border-color: #a5f3fc !important;
+}
+
+[data-theme="light"] .bg-blue-950,
+[data-theme="light"] .bg-blue-950\/80 {
+  background-color: #eff6ff !important;
+  color: #2563eb !important;
+  border-color: #bfdbfe !important;
+}
+
+
+
